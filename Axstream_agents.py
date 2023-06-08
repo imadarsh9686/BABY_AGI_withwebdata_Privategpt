@@ -790,7 +790,7 @@ page = st.sidebar.radio(".", options=list(pages.keys()))
 
 
 with st.sidebar:
-    openai_api_key = "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"
+    openai_api_key = "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"
     pineconekey = "9b18a194-2a57-4cc3-99a0-3a147e79c62b"
     pineconeEnv = "us-west1-gcp-free"
     index_name2 = "axstream"
