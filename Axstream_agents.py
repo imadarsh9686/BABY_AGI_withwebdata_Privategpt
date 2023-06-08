@@ -32,8 +32,7 @@ def home():
         "https://flowise-production-a606.up.railway.app/api/v1/prediction/8f17b231-6b0c-4ab6-929d-214d368e111e",  # DOCgpt
         "https://flowise-production-a606.up.railway.app/api/v1/prediction/6a421494-72c9-42f1-9520-a84591bbdc54",  # GoogleGPT
         "https://flowise-production-a606.up.railway.app/api/v1/prediction/fafd1f25-a3a9-4c63-ad61-9cd8aa9100ad", # English to malay Translator
-        "https://flowise-production-a606.up.railway.app/api/v1/prediction/09095057-e5c7-4a41-ad72-0c5f8ec77c54", # baby agi
-        "https://flowise-production-a606.up.railway.app/api/v1/prediction/8f17b231-6b0c-4ab6-929d-214d368e111e"  #finetune answer from doc - web - openai
+        "https://flowise-production-a606.up.railway.app/api/v1/prediction/09095057-e5c7-4a41-ad72-0c5f8ec77c54" # baby agi
 
     ]
 
@@ -49,14 +48,7 @@ def home():
             st.error("Error occurred:", err)
             return None
 
-    def query1(payload):
-        try:
-            response = requests.post(API_URLS[1], json=payload)
-            response.raise_for_status()
-            return response.json()
-        except requests.exceptions.RequestException as err:
-            st.error("Error occurred:", err)
-            return None
+    
 
 
 
@@ -84,7 +76,7 @@ def home():
 
     # List to hold the conversation history
     conversation = []
-    chatlist =[]
+    #chatlist =[]
 
     if selected_api_index== 0 :
         # Chat container
@@ -181,7 +173,7 @@ def home():
 
     if submit_button and user_input:
         response = query({"history": conversation, "question": user_input})
-        response1 = query1({"history": conversation, "question": user_input})
+        #response1 = query1({"history": conversation, "question": user_input})
         # Add user input to conversation history
         conversation.append({"role": "user", "content": user_input})
         # Query the selected API
@@ -198,35 +190,13 @@ def home():
             )
 
 
-        if selected_api_index !=4 :
-            st.write("Answer:-", response)
+        
+        st.write("Answer:-", response)
 
 
 
 
-        if selected_api_index == 4:
-            if response or response1 is not None:
-                # Add bot response to conversation history
-                chatlist.append({"google result": response1, "document result": response})
-            else:
-                chatlist.append(
-                    {
-                        "result": "bot",
-                        "content": "Sorry, I am unable to process your request at the moment.",
-                    }
-                )
-
-
-            model_name = "gpt-3.5-turbo"
-            llm = ChatOpenAI(temperature=0.2, model_name=model_name)
-            conversation1 = ConversationChain(
-                llm=llm,
-                verbose=True,
-                memory=ConversationBufferMemory()
-            )
-            answer = conversation1.predict(
-                input=f"understand the question{user_input} just answer it from this content given{chatlist} ")
-            st.write("answer3", answer)
+        
 
 
 
@@ -790,7 +760,7 @@ page = st.sidebar.radio(".", options=list(pages.keys()))
 
 
 with st.sidebar:
-    openai_api_key = "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"
+    openai_api_key = "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"
     pineconekey = "9b18a194-2a57-4cc3-99a0-3a147e79c62b"
     pineconeEnv = "us-west1-gcp-free"
     index_name2 = "axstream"
