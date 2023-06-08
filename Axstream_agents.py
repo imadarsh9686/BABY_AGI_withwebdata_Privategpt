@@ -48,6 +48,7 @@ def home():
         except requests.exceptions.RequestException as err:
             st.error("Error occurred:", err)
             return None
+        
        """ 
     def query1(payload):
         try:
@@ -57,7 +58,7 @@ def home():
         except requests.exceptions.RequestException as err:
             st.error("Error occurred:", err)
             return None
-"""
+         """
     
 
 
