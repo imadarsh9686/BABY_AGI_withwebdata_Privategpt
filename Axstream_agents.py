@@ -29,11 +29,11 @@ def home():
     import requests
 
     API_URLS = [
-        "http://localhost:3000/api/v1/prediction/e14e36a5-e244-49c3-adcb-513240b2d018",  # DOCgpt
-        "http://localhost:3000/api/v1/prediction/d109e26d-24ec-49fb-9979-9d01608e1f3b",  # GoogleGPT
-        "http://localhost:3000/api/v1/prediction/74fb78fd-1c4f-48b4-9a3b-46492fd00fc4", # English to malay Translator
-        "http://localhost:3000/api/v1/prediction/e65dea8e-f06e-4cc6-9494-74de5db9b43d", # baby agi
-        "http://localhost:3000/api/v1/prediction/e14e36a5-e244-49c3-adcb-513240b2d018"  #finetune answer from doc - web - openai
+        "https://flowise-production-a606.up.railway.app/api/v1/prediction/8f17b231-6b0c-4ab6-929d-214d368e111e",  # DOCgpt
+        "https://flowise-production-a606.up.railway.app/api/v1/prediction/6a421494-72c9-42f1-9520-a84591bbdc54",  # GoogleGPT
+        "https://flowise-production-a606.up.railway.app/api/v1/prediction/fafd1f25-a3a9-4c63-ad61-9cd8aa9100ad", # English to malay Translator
+        "https://flowise-production-a606.up.railway.app/api/v1/prediction/09095057-e5c7-4a41-ad72-0c5f8ec77c54", # baby agi
+        "https://flowise-production-a606.up.railway.app/api/v1/prediction/8f17b231-6b0c-4ab6-929d-214d368e111e"  #finetune answer from doc - web - openai
 
     ]
 
@@ -790,10 +790,10 @@ page = st.sidebar.radio(".", options=list(pages.keys()))
 
 
 with st.sidebar:
-    openai_api_key = "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"
-    pineconekey = "f4e3f5b8-fc9a-4d6d-be18-ba5f200e0e52"
+    openai_api_key = "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"
+    pineconekey = "9b18a194-2a57-4cc3-99a0-3a147e79c62b"
     pineconeEnv = "us-west1-gcp-free"
-    index_name2 = "babyagi"
+    index_name2 = "axstream"
     serp_api = "e5f2d17e0eac074f4cc71af00d2beb7e42f2e73b29a2a7afcebea0b5a3ee8ba1"
 
 
