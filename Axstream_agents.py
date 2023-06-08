@@ -815,7 +815,7 @@ with st.sidebar:
 
 if openai_api_key and pineconekey and pineconeEnv and index_name2 and serp_api:
 
-    st.success("All API keys are provided!")
+    st.success("!")
     pages[page]()
 
         # You can use the API keys in your code here
