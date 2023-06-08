@@ -49,7 +49,7 @@ def home():
             st.error("Error occurred:", err)
             return None
         
-       """ 
+       
     def query1(payload):
         try:
             response = requests.post(API_URLS[1], json=payload)
@@ -58,7 +58,7 @@ def home():
         except requests.exceptions.RequestException as err:
             st.error("Error occurred:", err)
             return None
-         """
+         
     
 
 
@@ -79,7 +79,7 @@ def home():
     selected_api_index = st.radio(
         "SELECT 🦜Agents BELOW ",
         list(range(len(API_URLS))),
-        format_func=lambda i: "QA based on document (pdf/url)" if i == 0 else "QA on current info using web search" if i == 1 else "Translate English to Malay" if i == 2 else "BABY AGI", #if i==3 else "Finetune answers Doc-Web-Openai"
+        format_func=lambda i: "QA based on document (pdf/url)" if i == 0 else "QA on current info using web search" if i == 1 else "Translate English to Malay" if i == 2 else "BABY AGI" if i==3 else "Finetune answers Doc-Web-Openai",
     )
 
 
@@ -87,7 +87,7 @@ def home():
 
     # List to hold the conversation history
     conversation = []
-    #chatlist =[]
+    chatlist =[]
 
     if selected_api_index== 0 :
         # Chat container
@@ -184,7 +184,7 @@ def home():
 
     if submit_button and user_input:
         response = query({"history": conversation, "question": user_input})
-        #response1 = query1({"history": conversation, "question": user_input})
+        response1 = query1({"history": conversation, "question": user_input})
         #response1 = query1({"history": conversation, "question": user_input})
         # Add user input to conversation history
         conversation.append({"role": "user", "content": user_input})
@@ -205,11 +205,12 @@ def home():
 
         
         #st.write("Answer:-", response)
-        st.write("Answer:-", response)
-        #if selected_api_index !=4 :
+        
+        if selected_api_index !=4 :
+            st.write("Answer:-", response)
             
             
-            """
+            
         if selected_api_index == 4:
             
             if response or response1 is not None:
@@ -234,7 +235,7 @@ def home():
             answer = conversation1.predict(
                 input=f"understand the question{user_input} just answer it from this content given{chatlist} ")
             st.write("answer3", answer)
-            """
+            
 
 
 
