@@ -803,7 +803,7 @@ with st.sidebar:
     pineconekey = "9b18a194-2a57-4cc3-99a0-3a147e79c62b"
     pineconeEnv = "us-west1-gcp-free"
     index_name2 = "axstream"
-    serp_api = "e5f2d17e0eac074f4cc71af00d2beb7e42f2e73b29a2a7afcebea0b5a3ee8ba1"
+    serp_api = "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"
 
 
 
