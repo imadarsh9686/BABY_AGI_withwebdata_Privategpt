@@ -68,7 +68,7 @@ def home():
     selected_api_index = st.radio(
         "SELECT 🦜Agents BELOW ",
         list(range(len(API_URLS))),
-        format_func=lambda i: "QA based on document (pdf/url)" if i == 0 else "QA on current info using web search" if i == 1 else "Translate English to Malay" if i == 2 else "BABY AGI" if i==3 else "Finetune answers Doc-Web-Openai",
+        format_func=lambda i: "QA based on document (pdf/url)" if i == 0 else "QA on current info using web search" if i == 1 else "Translate English to Malay" if i == 2 else "BABY AGI",
     )
 
 
