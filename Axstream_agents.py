@@ -5,7 +5,7 @@ import streamlit as st
 def home():
     import os
     from langchain.text_splitter import CharacterTextSplitter
-    from langchain.text_splitter import RecursiveCharacterTextSplitter
+    #from langchain.text_splitter import RecursiveCharacterTextSplitter
     from langchain.prompts import PromptTemplate
     from langchain.chains import LLMChain
     from langchain.document_loaders import PyPDFLoader
