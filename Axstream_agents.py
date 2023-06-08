@@ -49,7 +49,7 @@ def home():
             st.error("Error occurred:", err)
             return None
         
-     def query1(payload):
+    def query1(payload):
         try:
             response = requests.post(API_URLS[1], json=payload)
             response.raise_for_status()
