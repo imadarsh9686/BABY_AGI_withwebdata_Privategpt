@@ -805,11 +805,11 @@ page = st.sidebar.radio(".", options=list(pages.keys()))
 
 
 with st.sidebar:
-    openai_api_key = "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"
-    pineconekey = "9b18a194-2a57-4cc3-99a0-3a147e79c62b"
+    openai_api_key = st.secrets[openai_api_key]
+    pineconekey = st.secrets[pineconekey]
     pineconeEnv = "us-west1-gcp-free"
     index_name2 = "axstream"
-    serp_api = "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"
+    serp_api = st.secrets[serp_api]
 
 
 
