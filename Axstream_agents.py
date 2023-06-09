@@ -3,6 +3,12 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+openai_api_key =os.getenv(openai_api_key)
+pineconekey = os.getenv(pineconekey)
+pineconeEnv ="us-west1-gcp-free"
+index_name2 ="axstream"
+serp_api =os.getenv(serp_api)
+
 
 
 # Create a function for each page
@@ -23,8 +29,8 @@ def home():
     import pinecone
     #openai_api_key = "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"
 
-    #os.environ["PINECONE_API_KEY"] = pineconekey
-    #os.environ["OPENAI_API_KEY"] = openai_api_key
+    os.environ["PINECONE_API_KEY"] = pineconekey
+    os.environ["OPENAI_API_KEY"] = openai_api_key
 
 
 
@@ -786,13 +792,9 @@ page = st.sidebar.radio(".", options=list(pages.keys()))
 
 
 
-os.getenv ("API_KEY")
-with st.sidebar:
-    openai_api_key =os.getenv(openai_api_key)
-    pineconekey = os.getenv(pineconekey)
-    pineconeEnv ="us-west1-gcp-free"
-    index_name2 ="axstream"
-    serp_api =os.getenv(serp_api)
+#os.getenv ("API_KEY")
+
+    
 
 
 
