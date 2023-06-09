@@ -17,6 +17,7 @@ def home():
     from langchain.chains import ConversationChain
     from langchain.chains.conversation.memory import ConversationBufferMemory
     import pinecone
+    openai_api_key = "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"
 
     os.environ["PINECONE_API_KEY"] = pineconekey
     os.environ["OPENAI_API_KEY"] = openai_api_key
