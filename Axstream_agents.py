@@ -785,8 +785,8 @@ page = st.sidebar.radio(".", options=list(pages.keys()))
 
 
 with st.sidebar:
-    openai_api_key =st.secrets[openai_api_key
-    pineconekey =st.secrets[pineconekey]
+    openai_api_key =st.secrets[openai_api_key]
+    pineconekey = st.secrets[pineconekey]
     pineconeEnv ="us-west1-gcp-free"
     index_name2 ="axstream"
     serp_api =st.secrets[serp_api]
