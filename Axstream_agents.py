@@ -17,7 +17,7 @@ def home():
     from langchain.chains import ConversationChain
     from langchain.chains.conversation.memory import ConversationBufferMemory
     import pinecone
-    openai_api_key = "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"
+    #openai_api_key = "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"
 
     os.environ["PINECONE_API_KEY"] = pineconekey
     os.environ["OPENAI_API_KEY"] = openai_api_key
@@ -805,7 +805,7 @@ page = st.sidebar.radio(".", options=list(pages.keys()))
 
 
 with st.sidebar:
-    openai_api_key = "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"
+    openai_api_key = "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"
     pineconekey = "9b18a194-2a57-4cc3-99a0-3a147e79c62b"
     pineconeEnv = "us-west1-gcp-free"
     index_name2 = "axstream"
