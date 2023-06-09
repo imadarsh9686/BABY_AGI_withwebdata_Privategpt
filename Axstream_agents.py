@@ -43,7 +43,7 @@ def home():
         "https://flowise-production-a606.up.railway.app/api/v1/prediction/8f17b231-6b0c-4ab6-929d-214d368e111e",  # DOCgpt
         "https://flowise-production-a606.up.railway.app/api/v1/prediction/6a421494-72c9-42f1-9520-a84591bbdc54",  # GoogleGPT
         "https://flowise-production-a606.up.railway.app/api/v1/prediction/fafd1f25-a3a9-4c63-ad61-9cd8aa9100ad", # English to malay Translator
-        "https://flowise-production-a606.up.railway.app/api/v1/prediction/09095057-e5c7-4a41-ad72-0c5f8ec77c54",  # baby agi
+        #"https://flowise-production-a606.up.railway.app/api/v1/prediction/09095057-e5c7-4a41-ad72-0c5f8ec77c54",  # baby agi
         "https://flowise-production-a606.up.railway.app/api/v1/prediction/8f17b231-6b0c-4ab6-929d-214d368e111e" #finetune answer from doc - web - openai
 
     ]
@@ -90,7 +90,7 @@ def home():
     selected_api_index = st.radio(
         "SELECT 🦜Agents BELOW ",
         list(range(len(API_URLS))),
-        format_func=lambda i: "QA based on document (pdf/url)" if i == 0 else "QA on current info using web search" if i == 1 else "Translate English to Malay" if i == 2 else "BABY AGI" if i==3 else "Finetune answers Doc-Web-Openai",
+        format_func=lambda i: "QA based on document (pdf/url)" if i == 0 else "QA on current info using web search" if i == 1 else "Translate English to Malay" if i == 2 else "Finetune answers Doc-Web-Openai",
     )
 
 
@@ -217,12 +217,12 @@ def home():
         
         #st.write("Answer:-", response)
         
-        if selected_api_index !=4 :
+        if selected_api_index !=3 :
             st.write("Answer:-", response)
             
             
             
-        if selected_api_index == 4:
+        if selected_api_index == 3:
             
             if response or response1 is not None:
                 # Add bot response to conversation history
