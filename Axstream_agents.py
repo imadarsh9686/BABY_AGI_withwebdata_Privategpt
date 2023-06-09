@@ -244,8 +244,8 @@ def home():
                 memory=ConversationBufferMemory()
             )
             answer = conversation1.predict(
-                input=f"understand the question{user_input} just answer it from this content given{chatlist} ")
-            st.write("answer3", answer)
+                input=f"understand the query :-{user_input} just answer the query from this content given{chatlist}")
+            st.write(":-", answer)
             
 
 
