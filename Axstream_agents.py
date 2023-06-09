@@ -1,6 +1,7 @@
 import streamlit as st
 
 
+
 # Create a function for each page
 def home():
     import os
@@ -33,8 +34,8 @@ def home():
         "https://flowise-production-a606.up.railway.app/api/v1/prediction/8f17b231-6b0c-4ab6-929d-214d368e111e",  # DOCgpt
         "https://flowise-production-a606.up.railway.app/api/v1/prediction/6a421494-72c9-42f1-9520-a84591bbdc54",  # GoogleGPT
         "https://flowise-production-a606.up.railway.app/api/v1/prediction/fafd1f25-a3a9-4c63-ad61-9cd8aa9100ad", # English to malay Translator
-        "https://flowise-production-a606.up.railway.app/api/v1/prediction/09095057-e5c7-4a41-ad72-0c5f8ec77c54"# baby agi
-        #"https://flowise-production-a606.up.railway.app/api/v1/prediction/8f17b231-6b0c-4ab6-929d-214d368e111e" #finetune answer from doc - web - openai
+        "https://flowise-production-a606.up.railway.app/api/v1/prediction/09095057-e5c7-4a41-ad72-0c5f8ec77c54",  # baby agi
+        "https://flowise-production-a606.up.railway.app/api/v1/prediction/8f17b231-6b0c-4ab6-929d-214d368e111e" #finetune answer from doc - web - openai
 
     ]
 
@@ -625,66 +626,18 @@ def contact():
     os.environ["PINECONE_API_KEY"] = pineconekey
     os.environ["OPENAI_API_KEY"] = openai_api_key
 
-    # embeddings
-
     embeddings = OpenAIEmbeddings()
 
     # Initialize Pinecone
     pinecone.init(api_key=pineconekey, environment=pineconeEnv)
-    #index_name2 ="babyagi"
-    #index_name = "babyagi"
-
+    index_name2 = "axstream"
 
     st.title('🦜XstreaM  CHAT💬--DOC 📄')
 
 
-    docs_chunks = []
     uploaded_files = st.file_uploader("Choose a PDF file", accept_multiple_files=True)
-    if st.button('upload'):
-
-        if len(uploaded_files) > 0:
-            for uploaded_file in uploaded_files:
-                documents = process_file(uploaded_file)
-                docs_chunks.extend(split_docs(documents))
 
 
-
-
-
-    #with st.sidebar:
-        
-
-
-
-
-
-
-    # uppserting the data to pinecone
-
-    index1 = Pinecone.from_documents(docs_chunks, embeddings, index_name=index_name2)
-
-
-
-
-
-
-    # Prompt Template
-
-    prompt = st.text_input("Ask a question about the PDF content:")
-
-    script_template = PromptTemplate(
-        input_variables=['question', 'context'],
-        template='Write an answer for this: {question}\n{context}\nAnswer: '
-    )
-
-
-    # Llms
-    model_name = "gpt-3.5-turbo"
-    llm = ChatOpenAI(temperature=0.2, model_name=model_name)
-    script_chain = LLMChain(llm = llm, prompt = script_template, verbose = True, output_key = 'question')
-
-    #if selected_api_index == 0:
-    #uploaded_files = st.file_uploader("Choose PDF file", accept_multiple_files=True)
     def process_file(uploaded_file):
         bytes_data = uploaded_file.read()
         st.write("filename:", uploaded_file.name)
@@ -712,18 +665,40 @@ def contact():
 
 
 
-
-
-
-
-
-    def split_docs(documents, chunk_size=1000, chunk_overlap=20):
+    def split_docs(documents, chunk_size=1000, chunk_overlap=20) :
         text_splitter = CharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
 
         docs = text_splitter.split_documents(documents)
         return docs
 
+    docs_chunks = []
 
+    if st.button('upload'):
+
+        if len(uploaded_files) > 0:
+            for uploaded_file in uploaded_files:
+                documents = process_file(uploaded_file)
+                docs_chunks.extend(split_docs(documents))
+
+    index1 = Pinecone.from_documents(docs_chunks, embeddings, index_name=index_name2)
+
+   # Prompt Template
+
+    prompt = st.text_input("Ask a question about the PDF content:")
+
+    script_template = PromptTemplate(
+        input_variables=['question', 'context'],
+        template='Write an answer for this: {question}\n{context}\nAnswer: '
+    )
+
+
+    # Llms
+    model_name = "gpt-3.5-turbo"
+    llm = ChatOpenAI(temperature=0.2, model_name=model_name)
+    script_chain = LLMChain(llm = llm, prompt = script_template, verbose = True, output_key = 'question')
+
+    #if selected_api_index == 0:
+    #uploaded_files = st.file_uploader("Choose PDF file", accept_multiple_files=True)
 
 
     # find similar documnets
@@ -736,6 +711,9 @@ def contact():
         return similar_docs
 
 
+    #similar_docs = get_similiar_docs(prompt)
+
+
     # question answering chain
     #similar_docs = get_similiar_docs(prompt)
     chain = load_qa_chain(llm, chain_type="stuff", verbose=True)
@@ -745,12 +723,7 @@ def contact():
     #answer1 = chain.run(input_documents=similar_docs, question=f"understand the {similar_docs} and try to give the meaningful answer and give the step by step answer for {prompt} ")
 
 
-
-
-
     def get_answer(query):
-
-
         # Get similar documents
         similar_docs = get_similiar_docs(query)
         # Generate answer using script_chain
@@ -759,16 +732,23 @@ def contact():
 
 
 
-
-
     
     if st.button('Ask'):
-        st.spinner("Processing")
-        question=prompt
-        answer = get_answer(question)
-        st.write(answer)
-        st.write(similar_docs)
-        #st.write(answer1)
+        try:
+            st.spinner("Processing")
+            question = prompt
+            answer = get_answer(question)
+            st.write(answer)
+            # st.write(similar_docs)
+            # st.write(answer1)
+        except Exception:
+            st.write("Documents loaded PRESS ASK again ")
+            pass
+
+
+
+
+
 
 
 
@@ -805,11 +785,11 @@ page = st.sidebar.radio(".", options=list(pages.keys()))
 
 
 with st.sidebar:
-    openai_api_key = st.secrets[openai_api_key]
-    pineconekey = st.secrets[pineconekey]
-    pineconeEnv = "us-west1-gcp-free"
-    index_name2 = "axstream"
-    serp_api = st.secrets[serp_api]
+    openai_api_key =st.secrets[openai_api_key
+    pineconekey =st.secrets[pineconekey]
+    pineconeEnv ="us-west1-gcp-free"
+    index_name2 ="axstream"
+    serp_api =st.secrets[serp_api]
 
 
 
