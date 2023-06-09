@@ -3,11 +3,11 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-openai_api_key= os.getenv("openai_api_key")
-pineconekey = os.getenv("pineconekey")
+openai_api_key= st.secrets["openai_api_key"]
+pineconekey = st.secrets["pineconekey"]
 pineconeEnv ="us-west1-gcp-free"
 index_name2 ="axstream"
-serp_api =os.getenv("serp_api")
+serp_api =st.secrets["serp_api"]
 
 
 
