@@ -1,4 +1,7 @@
 import streamlit as st
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 
 
@@ -20,8 +23,8 @@ def home():
     import pinecone
     #openai_api_key = "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"
 
-    os.environ["PINECONE_API_KEY"] = pineconekey
-    os.environ["OPENAI_API_KEY"] = openai_api_key
+    #os.environ["PINECONE_API_KEY"] = pineconekey
+    #os.environ["OPENAI_API_KEY"] = openai_api_key
 
 
 
@@ -783,13 +786,13 @@ page = st.sidebar.radio(".", options=list(pages.keys()))
 
 
 
-
+os.getenv ("API_KEY")
 with st.sidebar:
-    openai_api_key =st.secrets[openai_api_key]
-    pineconekey = st.secrets[pineconekey]
+    openai_api_key =os.getenv(openai_api_key)
+    pineconekey = os.getenv(pineconekey)
     pineconeEnv ="us-west1-gcp-free"
     index_name2 ="axstream"
-    serp_api =st.secrets[serp_api]
+    serp_api =os.getenv(serp_api)
 
 
 
